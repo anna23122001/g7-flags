@@ -5,18 +5,19 @@ const euFlag = 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Euro
 
 function loadLeaderFlag(lastName){
     const g7Leaders = {
-        Biden: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Flag_of_the_United_States.png',
-        Scholz: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg',
-        Meloni: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg',
-        Trudeau: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg',
-        Macron: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
-        Sunak: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg',
-        Kisida: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg',
-        Zelensky: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg'
+        biden: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Flag_of_the_United_States.png',
+        scholz: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg',
+        meloni: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg',
+        trudeau: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg',
+        macron: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+        sunak: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg',
+        kisida: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg',
+        zelensky: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg'
     };
-    if (lastName in g7Leaders){
-        const flagUrl = g7Leaders[lastName];
-        fetch(flagUrl)
+    const lowerCaseLN = lastName.toLowerCase();
+    if (lowerCaseLN in g7Leaders){
+        const flagUrl = g7Leaders[lowerCaseLN];
+    fetch(flagUrl)
         .then((response )=> {
             if(response.ok){
                 return response.blob();
@@ -37,7 +38,7 @@ function loadLeaderFlag(lastName){
 }
 
 leaderInput.addEventListener('input', function(){
-    const leaderLastName = leaderInput.value;
+    const leaderLastName = leaderInput.value.toLowerCase();
     if (leaderLastName === ''){
         flagImage.src = euFlag;
     }else{
